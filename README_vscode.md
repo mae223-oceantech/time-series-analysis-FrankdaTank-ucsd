@@ -83,23 +83,30 @@ No terminal needed — VS Code can clone directly from GitHub.
 
 ---
 
-### Step 4 — Create the course Python environment inside VS Code
+### Step 4 — Create the course Python environment
 
-VS Code can create the `mae223` conda environment directly from `environment.yml` — no terminal commands needed.
+**Try the VS Code GUI method first (all platforms):**
 
-1. Open the **Command Palette**: press `Cmd+Shift+P` (Mac) / `Ctrl+Shift+P` (Windows)
-2. Type `Python: Create Environment` and select it
-3. Choose **Conda**
-4. VS Code will show a list of environment files it found. If `environment.yml` appears, select it and skip to step 5. **If nothing appears or the list is empty:**
-   - Press `Escape` to cancel
-   - Go to **File → Open Folder**, navigate to your `time-series-analysis` folder, and click **Select Folder**
-   - Once the folder is open, repeat steps 1–4 — VS Code should now find `environment.yml`
-5. Wait a few minutes while the environment is created — a progress bar will appear at the bottom of VS Code
-6. When it finishes, VS Code will automatically register `mae223` as an available kernel — no further steps needed
+1. Make sure the repo folder is open — check the Explorer panel on the left sidebar and confirm you can see `environment.yml` in the file list. If not, go to **File → Open Folder**, select your `time-series-analysis` folder, then continue.
+2. Open the **Command Palette**: press `Cmd+Shift+P` (Mac) / `Ctrl+Shift+P` (Windows)
+3. Type `Python: Create Environment` and select it
+4. Choose **Conda**
+5. Select `environment.yml` when prompted
+6. Wait a few minutes — a progress bar will appear at the bottom of VS Code
+7. When it finishes, VS Code will register `mae223` as an available kernel automatically
 
-> **Windows users:** VS Code may not detect `environment.yml` automatically. This usually means the repo folder is not open yet. Check the Explorer panel on the left sidebar — you should see `environment.yml` listed. If you don't, go to **File → Open Folder**, navigate to the `time-series-analysis` folder you cloned in Step 3, click **Select Folder**, then repeat Step 4.
->
-> **Also on Windows:** If `Conda` does not appear as an option in step 3, close VS Code completely, reopen it, and try again. VS Code sometimes needs a restart to detect a freshly installed Miniconda.
+**If nothing happens after selecting Conda (common on Windows), use the terminal fallback:**
+
+1. Open the VS Code integrated terminal: press `` Ctrl+` `` (backtick) or go to **Terminal → New Terminal**
+2. Run these three commands one at a time, pressing Enter after each:
+```
+conda env create -f environment.yml
+conda activate mae223
+python -m ipykernel install --user --name mae223 --display-name "mae223"
+```
+3. Close and reopen VS Code when the commands finish
+
+> **Windows tip:** If `conda` is not recognised in the VS Code terminal, close VS Code, open **Anaconda Prompt** from the Start menu, navigate to your repo folder with `cd path\to\time-series-analysis`, and run the three commands above from there instead.
 
 ---
 
